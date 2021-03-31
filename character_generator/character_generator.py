@@ -42,7 +42,7 @@ while points >= 0:
     elif choice == '2':
         health = int(input('Какое количество очков вы хотите добавить в здоровье? '))
         if health > points:
-            while health > poitns:
+            while health > points:
                 print(err_mes)
                 print('Текущее количество очков: ', points)
                 health = int(input('Какое количество очков вы хотите добавить в здоровье? '))
