@@ -36,13 +36,14 @@ def checking_value(value, points):
         value = int(input('Какое количество очков вы хотите добавить? '))
     return value
 
-def checking_old_value(value, points, old_point):
-    #if value > old_point and value - old_point > points:
-    while value - old_point > points:
-        print(old_err_mes)
-        print('Текущее количество очков: ', points)
-        value = int(input('На какое значение хотите изменить характеристику? '))
-    return value
+# def checking_old_value(value, points, old_point):
+#     #if value > old_point and value - old_point > points:
+#     while value > points and value >= 30:
+#         print(old_err_mes)
+#         print('Текущее количество очков: ', points)
+#         value = int(input('На какое значение хотите изменить характеристику? '))
+#         old_point = value
+#     return value
 
 print(greeting)
 print('--------------------------------------------')
@@ -83,17 +84,41 @@ while choice != '0':
         answer = input('Хотите переназначить значение? (да/нет) ')
         if answer.lower() == 'да':
             if choice == '1':
+                # old_point = characters['Сила']
+                # strong = int(input('На какое значение хотите изменить характеристику? '))
+                # if strong > old_point:
+                #     # new_point = checking_old_value(strong, points, old_point)
+                #     while True:
+                #         print(old_err_mes)
+                #         print('Текущее количество очков: ', points)
+                #         prev_value = strong
+                #         strong = int(input('На какое значение хотите изменить характеристику? '))
+                #         if strong > 30:
+                #             strong = prev_value
+                #         elif strong <= points or (strong >= points and strong <= 30):
+                #             break
+                #     new_point = strong
+                # else:
+                #     new_point = strong
+                # if new_point > old_point:
+                #     points -= (new_point - old_point)
+                # else:
+                #     points += (old_point - new_point)
+                # characters['Сила'] = new_point
                 old_point = characters['Сила']
-                strong = int(input('На какое значение хотите изменить характеристику? '))
-                if strong > old_point and strong - old_point <= points:
-                    new_point = checking_old_value(strong, points, old_point)
-                else:
-                    new_point = strong
-                if new_point > old_point:
-                    points -= (new_point - old_point)
-                else:
-                    points += (old_point - new_point)
-                characters['Сила'] = new_point
+                while True:
+                    print('Текущее количество очков: ', points)
+                    strong = int(input('На какое значение хотите изменить характеристику? '))
+                    if strong <= 30:
+                        if strong > points:
+                            difference = strong - old_point
+                            if difference <= points:
+                                characters['Сила'] = strong
+                            else:
+                                print(old_err_mes)
+                    else:
+                        print('Значение превышает общее количество очков.')
+                        print('Попробуйте еще раз!')
     
 
 
